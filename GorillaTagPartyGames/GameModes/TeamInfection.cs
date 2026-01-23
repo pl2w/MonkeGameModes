@@ -6,10 +6,9 @@ namespace GorillaTagPartyGames.GameModes;
 
 public class TeamInfection : GorillaGameManager
 {
-    public override GameModeType GameType() => (GameModeType)4821;
+    public override GameModeType GameType() => (GameModeType)GameModeInfo.TeamTagId;
     public override string GameModeName() => GameModeInfo.TeamTagGuid;
     public override string GameModeNameRoomLabel() => string.Empty;
-
     public override int MyMatIndex(NetPlayer player) => 3;
 
     public override void OnSerializeRead(object newData)
@@ -25,9 +24,8 @@ public class TeamInfection : GorillaGameManager
     public override void OnSerializeWrite(PhotonStream stream, PhotonMessageInfo info)
     {
     }
-    
+
     public override void AddFusionDataBehaviour(NetworkObject behaviour)
     {
-        behaviour.AddBehaviour<CasualGameModeData>();
     }
 }
