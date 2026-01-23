@@ -1,8 +1,15 @@
-﻿namespace GorillaTagPartyGames;
+﻿using BepInEx;
+using GorillaTagPartyGames.GameModes;
+using Utilla.Attributes;
+
+namespace GorillaTagPartyGames;
 
 [BepInPlugin(PluginInfo.Guid, PluginInfo.Name, PluginInfo.Version)]
+[BepInDependency("org.legoandmars.gorillatag.utilla", "1.5.0")]
+[ModdedGamemode(GameModeInfo.TeamTagGuid, "TEAM TAG", typeof(TeamInfection))]
 public class Plugin : BaseUnityPlugin
 {
+    
 }
 
 public static class PluginInfo
@@ -10,4 +17,9 @@ public static class PluginInfo
     public const string Guid = "xyz.pl2w.gtag.partygames";
     public const string Name = "Gorilla Tag Party Games";
     public const string Version = "0.1.0";
+}
+
+public static class GameModeInfo
+{
+    public const string TeamTagGuid = "xyz.pl2w.gtag.partygames.teamtag";
 }
