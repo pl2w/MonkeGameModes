@@ -2,13 +2,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Fusion;
 using GorillaGameModes;
-using GorillaTagPartyGames.RoomSystem;
 using Photon.Pun;
+using TeamInfection.RoomSystem;
 using UnityEngine;
 
-namespace GorillaTagPartyGames.GameModes.TeamInfection;
+namespace TeamInfection.GameModes;
 
-public class TeamInfection : GorillaGameManager
+public class TeamInfectionManager : GorillaGameManager
 {
     private readonly Dictionary<int, Team> _playerTeams = new();
     private readonly Dictionary<int, double> _lastTagTime = new();
@@ -24,9 +24,10 @@ public class TeamInfection : GorillaGameManager
     private float _restartTimer;
 
     private const float RestartDelay = 5f;
+    private const float TagCooldown = 5f;
 
-    public override GameModeType GameType() => (GameModeType)GameModeInfo.TeamTagId;
-    public override string GameModeName() => GameModeInfo.TeamTagGuid;
+    public override GameModeType GameType() => (GameModeType)GameModeInfo.TeamInfectionId;
+    public override string GameModeName() => GameModeInfo.TeamInfectionGuid;
     public override string GameModeNameRoomLabel() => string.Empty;
 
     public override void StartPlaying()
@@ -114,7 +115,7 @@ public class TeamInfection : GorillaGameManager
         _isRestarting = true;
         _restartTimer = 0f;
 
-        foreach (NetPlayer player in GorillaGameModes.GameMode.ParticipatingPlayers)
+        foreach (var player in GorillaGameModes.GameMode.ParticipatingPlayers)
         {
             RoomSystemWrapper.SendSoundEffectToPlayer(2, 0.25f, player, true);
         }
@@ -140,6 +141,12 @@ public class TeamInfection : GorillaGameManager
         if (!_playerTeams.TryGetValue(taggingPlayer.ActorNumber, out var taggingTeam))
         {
             Plugin.Log.LogWarning("Tagging player has no team");
+            return;
+        }
+
+        if (_lastTagTime.TryGetValue(taggingPlayer.ActorNumber, out var lastTagTime) && lastTagTime + TagCooldown > Time.timeAsDouble)
+        {
+            Plugin.Log.LogWarning("Tagging player is on cooldown");
             return;
         }
 

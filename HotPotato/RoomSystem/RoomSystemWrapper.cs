@@ -1,8 +1,7 @@
 using System;
 using System.Reflection;
-using UnityEngine;
 
-namespace GorillaTagPartyGames.RoomSystem;
+namespace HotPotato.RoomSystem;
 
 public static class RoomSystemWrapper
 {
