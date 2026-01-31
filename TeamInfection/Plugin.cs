@@ -10,7 +10,7 @@ namespace TeamInfection;
 [ModdedGamemode(GameModeInfo.TeamInfectionGuid, GameModeInfo.TeamInfectionName, typeof(TeamInfectionManager))]
 public class Plugin : BaseUnityPlugin
 {
-    internal static ManualLogSource Log;
+    private static ManualLogSource Log;
     
     public Plugin()
     {

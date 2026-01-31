@@ -9,6 +9,22 @@ public class HotPotatoManager : GorillaGameManager
     public override GameModeType GameType() => (GameModeType)GameModeInfo.HotPotatoId;
     public override string GameModeName() => GameModeInfo.HotPotatoGuid;
     public override string GameModeNameRoomLabel() => string.Empty;
+
+    public override void StartPlaying()
+    {
+        base.StartPlaying();
+    }
+
+    public override void Tick()
+    {
+        base.Tick();
+    }
+
+    public override void StopPlaying()
+    {
+        base.StopPlaying();
+    }
+
     public override void OnSerializeRead(PhotonStream stream, PhotonMessageInfo info) { }
     public override void OnSerializeWrite(PhotonStream stream, PhotonMessageInfo info) { }
     public override void AddFusionDataBehaviour(NetworkObject behaviour) { }

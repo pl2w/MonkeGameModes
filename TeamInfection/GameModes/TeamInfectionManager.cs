@@ -2,9 +2,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Fusion;
 using GorillaGameModes;
+using MonkeLib.Helpers;
 using Photon.Pun;
-using TeamInfection.RoomSystem;
 using UnityEngine;
+using MonkeLib.Wrappers;
+using GameMode = Fusion.GameMode;
 
 namespace TeamInfection.GameModes;
 
@@ -16,6 +18,10 @@ public class TeamInfectionManager : GorillaGameManager
     private readonly Dictionary<int, Team> _playerTeams = new();
     
     private const float CountdownTime = 5f;
+    
+    public GameModeMaterials redTeamMaterial = GameModeMaterials.PaintBrawlRedTeam;
+    public GameModeMaterials blueTeamMaterial =  GameModeMaterials.PaintBrawlBlueTeam;
+    public GameModeMaterials defaultMaterial =  GameModeMaterials.Default;
     
     public override GameModeType GameType() => (GameModeType)GameModeInfo.TeamInfectionId;
     public override string GameModeName() => GameModeInfo.TeamInfectionGuid;
@@ -172,9 +178,9 @@ public class TeamInfectionManager : GorillaGameManager
         Team team = _playerTeams.GetValueOrDefault(forPlayer.ActorNumber, Team.Teamless);
         int matIndex = team switch
         {
-            Team.Red => 8,
-            Team.Blue => 4,
-            _ => 0
+            Team.Red => (int)redTeamMaterial,
+            Team.Blue => (int)blueTeamMaterial,
+            _ => (int)defaultMaterial
         };
         
         return matIndex;
