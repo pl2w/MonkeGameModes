@@ -1,4 +1,4 @@
-# Gorilla Tag Party Games
+# Gorilla Tag Many GameModes
 Adds multiple custom gamemodes to the VR game *Gorilla Tag*.  
 Each gamemode is implemented as its own standalone mod.
 
