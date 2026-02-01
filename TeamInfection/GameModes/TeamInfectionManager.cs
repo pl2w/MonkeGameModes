@@ -6,7 +6,6 @@ using MonkeLib.Helpers;
 using Photon.Pun;
 using UnityEngine;
 using MonkeLib.Wrappers;
-using GameMode = Fusion.GameMode;
 
 namespace TeamInfection.GameModes;
 
@@ -23,8 +22,8 @@ public class TeamInfectionManager : GorillaGameManager
     public GameModeMaterials blueTeamMaterial =  GameModeMaterials.PaintBrawlBlueTeam;
     public GameModeMaterials defaultMaterial =  GameModeMaterials.Default;
     
-    public override GameModeType GameType() => (GameModeType)GameModeInfo.TeamInfectionId;
-    public override string GameModeName() => GameModeInfo.TeamInfectionGuid;
+    public override GameModeType GameType() => (GameModeType)GameModeInfo.Id;
+    public override string GameModeName() => GameModeInfo.Guid;
     public override string GameModeNameRoomLabel() => string.Empty;
 
     public override void StartPlaying()
