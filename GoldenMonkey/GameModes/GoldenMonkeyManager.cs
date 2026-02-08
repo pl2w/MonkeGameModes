@@ -3,6 +3,7 @@ using Fusion;
 using GorillaGameModes;
 using MonkeLib.Helpers;
 using Photon.Pun;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace GoldenMonkey.GameModes;
@@ -18,12 +19,6 @@ public class GoldenMonkeyManager : GorillaGameManager
     public override GameModeType GameType() => (GameModeType)GameModeInfo.Id;
     public override string GameModeName() => GameModeInfo.Guid;
     public override string GameModeNameRoomLabel() => string.Empty;
-    
-    public void Start()
-    {
-        var goldenTexture = MonkeLib.Assets.AssetLoading.LoadTextureFromEmbed("GoldenMonkey.Assets.golden_texture.png");
-        Plugin.Log.LogInfo(goldenTexture == null);
-    }
 
     public override void StartPlaying()
     {
@@ -33,6 +28,9 @@ public class GoldenMonkeyManager : GorillaGameManager
         slowJumpMultiplier = 1.1f;
         fastJumpLimit = 8.5f;
         fastJumpMultiplier = 1.3f;
+        
+        if (!NetworkSystem.Instance.IsMasterClient)
+            return;
         
         ResetGame();
     }
@@ -75,7 +73,7 @@ public class GoldenMonkeyManager : GorillaGameManager
     public override int MyMatIndex(NetPlayer forPlayer)
     {
         if (forPlayer.ActorNumber == _currentGoldenMonkey)
-            return (int)GameModeMaterials.PaintBrawlRedTeamHit;
+            return (int)GameModeMaterials.PaintBrawlNoTeamStunned;
         
         return (int)GameModeMaterials.Default;
     }
