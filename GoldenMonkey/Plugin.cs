@@ -29,14 +29,14 @@ public class Plugin : BaseUnityPlugin
 
 public static class PluginInfo
 {
-    public const string Guid = "xyz.pl2w.goldenmonkey";
+    public const string Guid = "xyz.pl2w_chin.goldenmonkey";
     public const string Name = "Golden Monkey";
     public const string Version = "0.1.0";
 }
 
 public static class GameModeInfo
 {
-    public const string Guid = "xyz.pl2w.goldenmonkey";
+    public const string Guid = "xyz.pl2w_chin.goldenmonkey";
     public const string Name = "GOLDEN MONKEY";
     public const int Id = 4823;
 }

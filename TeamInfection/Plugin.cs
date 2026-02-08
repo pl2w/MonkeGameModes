@@ -22,14 +22,14 @@ public class Plugin : BaseUnityPlugin
 
 public static class PluginInfo
 {
-    public const string Guid = "xyz.pl2w.teaminfection";
+    public const string Guid = "xyz.pl2w_chin.teaminfection";
     public const string Name = "Team Infection";
     public const string Version = "0.1.0";
 }
 
 public static class GameModeInfo
 {
-    public const string Guid = "xyz.pl2w.teaminfection";
+    public const string Guid = "xyz.pl2w_chin.teaminfection";
     public const string Name = "TEAM INFECTION";
     public const int Id = 4821;
 }

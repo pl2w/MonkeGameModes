@@ -146,7 +146,7 @@
         </Reference>
 
         <Reference Include="Utilla">
-            <HintPath>$(GorillaTagDir)/BepInEx/plugins/Utilla.dll</HintPath>
+            <HintPath>$(GorillaTagDir)/BepInEx/plugins/Utilla/Utilla.dll</HintPath>
             <Private>false</Private>
         </Reference>
 

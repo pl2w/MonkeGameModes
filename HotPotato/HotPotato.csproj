@@ -6,6 +6,16 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Assets\burntpotato.png" />
+      <None Remove="Assets\potato.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Assets\burntpotato.png" />
+      <EmbeddedResource Include="Assets\potato.png" />
+    </ItemGroup>
+
+    <ItemGroup>
         <Reference Include="0Harmony">
             <HintPath>$(GorillaTagDir)/BepInEx/core/0Harmony.dll</HintPath>
             <Private>false</Private>
@@ -146,7 +156,7 @@
         </Reference>
 
         <Reference Include="Utilla">
-            <HintPath>$(GorillaTagDir)/BepInEx/plugins/Utilla.dll</HintPath>
+            <HintPath>$(GorillaTagDir)/BepInEx/plugins/Utilla/Utilla.dll</HintPath>
             <Private>false</Private>
         </Reference>
 
@@ -156,18 +166,12 @@
         </Reference>
     </ItemGroup>
 
-    <Import Project="Directory.Build.local.props"
-            Condition="Exists('Directory.Build.local.props')" />
+    <Import Project="Directory.Build.local.props" Condition="Exists('Directory.Build.local.props')" />
 
-    <Target Name="PostBuild_CopyToBepInEx"
-            AfterTargets="Build"
-            Condition="Exists('$(GorillaTagDir)')">
+    <Target Name="PostBuild_CopyToBepInEx" AfterTargets="Build" Condition="Exists('$(GorillaTagDir)')">
 
         <MakeDir Directories="$(GorillaTagDir)/BepInEx/plugins/$(SolutionName)" />
 
-        <Copy
-                SourceFiles="$(TargetPath)"
-                DestinationFolder="$(GorillaTagDir)/BepInEx/plugins/$(SolutionName)"
-                SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(GorillaTagDir)/BepInEx/plugins/$(SolutionName)" SkipUnchangedFiles="true" />
     </Target>
 </Project>
